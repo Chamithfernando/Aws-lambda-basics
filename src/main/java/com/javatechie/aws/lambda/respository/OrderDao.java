@@ -11,6 +11,7 @@ import java.util.stream.Stream;
 public class OrderDao {
 
 
+    //return the list of order objects
     public List<Order> buildOrders(){
         return Stream.of(
                 new Order(101, "Mobile", 20000, 1),

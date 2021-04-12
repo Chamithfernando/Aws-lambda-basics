@@ -15,14 +15,22 @@ import java.util.stream.Collectors;
 @SpringBootApplication
 public class SpringbootAwsLambdaApplication {
 
+
+    //first we want to return all the order object
     @Autowired
     private OrderDao orderDao;
 
+
+    //retun all the data from repository
+    //Supplier is dont have any argument and it don't have return type
     @Bean
     public Supplier<List<Order>> orders() {
+
+        //lambda representation of method
         return () -> orderDao.buildOrders();
     }
 
+    //based on the ruturn input it will filter list and it will return the object
     @Bean
     public Function<String, List<Order>> findOrderByName() {
         return (input) -> orderDao.buildOrders().stream().filter(order -> order.getName().equals(input)).collect(Collectors.toList());
